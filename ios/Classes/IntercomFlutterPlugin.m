@@ -16,6 +16,11 @@
         NSString *appId = call.arguments[@"appId"];
         [Intercom setApiKey:iosApiKey forAppId:appId];
         result(@"Initialized Intercom");
+    } else if([@"sendTokenToIntercom" isEqualToString:call.method]) {
+        NSString *token = call.arguments[@"token"];
+        NSData *data = [token dataUsingEncoding:NSUTF8StringEncoding];
+        [Intercom setDeviceToken:data];
+        result(@"Token sent to Intercom");
     }
     else if([@"registerUnidentifiedUser" isEqualToString:call.method]) {
         [Intercom registerUnidentifiedUser];
